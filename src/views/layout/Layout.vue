@@ -16,5 +16,8 @@
   }
 </script>
 <style lang="scss" scoped>
-
+.app-wrapper{
+  padding-bottom:55px;
+  overflow-y:auto;
+}
 </style>

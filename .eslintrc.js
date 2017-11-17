@@ -29,6 +29,10 @@ module.exports = {
     "camelcase": 0,
     //var可以定义多个
     "one-var": 0,
-    "import/first": 0
+    "import/first": 0,
+    "semi":0,
+    "import/no-duplicates": 0,
+    "no-unused-vars": 0,
+    "no-unneeded-ternary": 0
   }
 }
