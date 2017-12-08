@@ -11,7 +11,7 @@
       </div>
       <div class="category-main">
         <div class="product-list">
-          <div class="product" v-for="item in goodsList" @click="handleDetails(item.id)">
+          <div class="product" v-for="item in goodsList" @click="handleDetails(item.id)" :key="item.id">
             <img :src="baseUrlImg + item.image_path">
             <div class="title">{{item.name}}</div>
           </div>
@@ -76,9 +76,9 @@
   display: flex;
   justify-content: space-between;
   .category-nav{
-    border-right:1px solid #26a2ff;
     width: 80px;
     display: flex;
+    background:#f0f0f0;
     flex-direction: column;
     a{
       width: 100%;
@@ -87,6 +87,7 @@
       text-align: center;
       &.active{
         color: #26a2ff;
+        background:#f9f9f9;
         border-left:2px solid #26a2ff;
       }
     }
@@ -95,6 +96,7 @@
     width: 75%;
     padding:6px;
     box-sizing:border-box;
+    background:#f9f9f9;
     &>img{
       width: 70px;
     }

@@ -2,17 +2,17 @@
   <div class="navbar-container">
     <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="home">
-        <img src="" slot="icon"> 首页
+        <svg-icon icon-class="home" slot="icon"/> 首页
       </mt-tab-item>
       <mt-tab-item id="category">
-        <img src="" slot="icon"> 分类
+        <svg-icon icon-class="category" slot="icon"/> 分类
       </mt-tab-item>
       <mt-tab-item id="cart">
         <mt-badge type="error" size="small" v-if="goodsCount > 0">{{goodsCount}}</mt-badge>
-        <img src="" slot="icon"> 购物车
+        <svg-icon icon-class="car" slot="icon"/> 购物车
       </mt-tab-item>
       <mt-tab-item id="my">
-        <img src="" slot="icon"> 我的
+        <svg-icon icon-class="my" slot="icon"/> 我的
       </mt-tab-item>
     </mt-tabbar>
   </div>

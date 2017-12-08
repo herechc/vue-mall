@@ -33,6 +33,8 @@ module.exports = {
     "semi":0,
     "import/no-duplicates": 0,
     "no-unused-vars": 0,
-    "no-unneeded-ternary": 0
+    "no-unneeded-ternary": 0,
+    "no-useless-return": 0,
+    "no-useless-escape": 0
   }
 }

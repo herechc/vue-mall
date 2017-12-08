@@ -1,9 +1,11 @@
 <template>
   <div class="container">
-    <mt-field label="姓名" placeholder="请输入姓名" class="bb-1" required v-model="listQuery.name"></mt-field>
-    <mt-field label="电话" placeholder="请输入电话" class="bb-1" required v-model="listQuery.mobile"></mt-field>
-    <mt-field label="详细地址" placeholder="请输入详细地址" class="bb-1" required v-model="listQuery.full_address"></mt-field>
-    <mt-field label="备注" placeholder="请输入备注" class="bb-1" required type="textarea" rows="4" v-model="listQuery.remark"></mt-field>
+    <mt-field label="姓名：" placeholder="请输入姓名" class="bb-1" required v-model="listQuery.name"></mt-field>
+    <mt-field label="电话：" placeholder="请输入电话" class="bb-1" required v-model="listQuery.mobile"></mt-field>
+    <mt-field label="详细地址：" class="bb-1" required v-model="listQuery.full_address">
+      <dh-select @selectChange="handleSelect" types="icon"></dh-select>
+    </mt-field>
+    <mt-field label="备注：" placeholder="请输入备注" class="bb-1" required type="textarea" rows="4" v-model="listQuery.remark"></mt-field>
     <br>
     <mt-button size="large" type="primary" @click="handleSave">保存</mt-button>
     <br>
@@ -12,10 +14,12 @@
 </template>
 
 <script>
+  import dhSelect from 'components/dhSelect'
   import { Field, MessageBox } from 'mint-ui'
   export default {
     components: {
-      [MessageBox.name]: MessageBox
+      [MessageBox.name]: MessageBox,
+      dhSelect
     },
     data() {
       return {
@@ -32,6 +36,11 @@
       this.userId = this.$store.getters.userId
     },
     methods: {
+      handleSelect(val) {
+        Object.keys(val).forEach(key => {
+          this.listQuery.full_address = this.listQuery.full_address + val[key].name + ' '
+        })
+      },
       handleSave() {
         this.$api.updateInfo(this.userId, this.listQuery).then(res => {
           // console.log(res)

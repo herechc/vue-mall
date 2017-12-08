@@ -7,29 +7,23 @@
         </mt-swipe-item>
       </mt-swipe>
     </div>
+    <!-- <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none"/>
+    </svg> -->
     <div class="block-product">
       <div class="wrapper product-new">
         <p>最近新品</p>
         <div class="product-list">
-          <div class="product" v-for="item in tableList" @click="goDetails(item.id)">
+          <div class="product" v-for="item in tableList" @click="goDetails(item.id)" :key="item.id">
             <img :src="baseUrlImg + item.image_path" >
-            <div class="title">{{item.name}}</div>
-            <div class="price">${{item.price}}</div>
+            <div class="info">
+              <div class="title">{{item.name}}</div>
+              <div class="price">${{item.price}}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="block-product">
-      <div class="wrapper product-hot">
-        <p>精品推荐</p>
-        <div class="product-list">
-          <div class="product">
-            <img src="../../assets/images/pro1.jpg" alt="">
-            <div class="title">test</div>
-            <div class="price">$1024</div>
-          </div>
-      </div>
-    </div> -->
   </div>
 </template>
 <script>
@@ -83,6 +77,9 @@
   }
 </script>
 <style lang="scss" scoped>
+.my-container{
+  background:#f5f5f5;
+}
 .block-swipe{
   height:250px;
 }
@@ -91,35 +88,39 @@
     margin-bottom: 70px;
   }
   p{
-    text-align: center;
-    color: #AB956D;
+    line-height:45px;
+    margin-top:5px;
+    height:45px;
+    background:#fff;
+    padding:0 20px;
+    font-size:16px;
+    color:#999;
+    border-bottom:1px solid #e6e6e6
   }
   .product-list{
     padding: 0.4em;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
     .product{
-      width: 49%;
-      padding: 0.4em 0;
+      height:90px;
       margin-bottom: 0.4em;
-      background: #eee;
+      background: #fff;
       display: flex;
-      flex-direction: column;
-      text-align: center;
-      div{
-        padding-top: 10px;
-      }
+      align-items: center
+      
     }
     img{
       width: 70px;
       height: 70px;
+      margin-left:10px;
+      margin-right:20px;
       border-radius: 50%;
-      margin: 0 auto 10px;
     }
   }
   .title{
-    height: 46px;
+    margin:5px 0 8px
+  }
+  .price{
+    color:#ccc;
+    font-size:16px
   }
 }
 </style>

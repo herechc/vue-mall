@@ -29,7 +29,12 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      chunks: ['vendor', 'app'],
+      hash: true // 为静态资源生成hash值
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor']
     }),
     new FriendlyErrorsPlugin()
   ]

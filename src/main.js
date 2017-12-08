@@ -6,6 +6,7 @@ import router from './router'
 import Mint from 'mint-ui'
 import api from 'api'
 import store from './store'
+import './icons'
 // import 'config/rem'
 import 'mint-ui/lib/style.css'
 
