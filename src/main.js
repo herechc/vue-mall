@@ -7,6 +7,7 @@ import Mint from 'mint-ui'
 import api from 'api'
 import store from './store'
 import './icons'
+import './directive'
 // import 'config/rem'
 import 'mint-ui/lib/style.css'
 

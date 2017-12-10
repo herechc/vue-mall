@@ -35,6 +35,10 @@ module.exports = {
     "no-unused-vars": 0,
     "no-unneeded-ternary": 0,
     "no-useless-return": 0,
-    "no-useless-escape": 0
+    "no-useless-escape": 0,
+    "no-mixed-operators": 0,
+    "comma-dangle": 0,
+    "no-unexpected-multiline":0,
+    "no-sequences": 0
   }
 }
