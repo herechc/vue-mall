@@ -72,6 +72,7 @@
 <style lang="scss" scoped>
 .block-category{
   min-height: 100vh;
+  background:#f9f9f9;
   overflow: auto;
   display: flex;
   justify-content: space-between;

@@ -7,14 +7,14 @@
     </mt-header>
     <div class="nocart" v-if="goodsData <= 0">你还没有添加任何商品</div>
     <div class="page-cell">
-      <div class="cell" v-for="item in goodsData">
+      <div class="cell" v-for="item in goodsData" :key="item.id">
         <label class="mint-checklist-label">
-                <span class="mint-checkbox">
-                  <input class="mint-checkbox-input" :value="item.id" :checked="item.checkStatus" @click="check(item.id,item.checkStatus)"  type="checkbox"> 
-                  <span class="mint-checkbox-core"></span>
-                </span> 
-                <span class="mint-checkbox-label"></span>
-              </label>
+          <span class="mint-checkbox">
+            <input class="mint-checkbox-input" :value="item.id" :checked="item.checkStatus" @click="check(item.id,item.checkStatus)"  type="checkbox"> 
+            <span class="mint-checkbox-core"></span>
+          </span> 
+          <span class="mint-checkbox-label"></span>
+        </label>
         <img :src="baseUrlImg + item.imgSrc" width="70" height="70">
         <div class="cell-right">
           <div><span class="title">{{item.name}}</span> <span>${{item.price}}</span></div>
@@ -31,12 +31,12 @@
     </div>
     <div class="go-order">
       <label class="mint-checklist-label">
-              <span class="mint-checkbox">
-                <input class="mint-checkbox-input" :checked="checkAll" @click="checkall(!checkAll)" type="checkbox"> 
-                <span class="mint-checkbox-core"></span>
-              </span> 
-              <span class="mint-checkbox-label">全选</span>
-            </label>
+        <span class="mint-checkbox">
+          <input class="mint-checkbox-input" :checked="checkAll" @click="checkall(!checkAll)" type="checkbox"> 
+          <span class="mint-checkbox-core"></span>
+        </span> 
+        <span class="mint-checkbox-label">全选</span>
+      </label>
       </mt-checklist>
       <div>下单 | {{checkTotalPrice}}</div>
       <div><i class="iconfont icon-yq-jt-r" @click="placeOrder"></i></div>
@@ -69,6 +69,7 @@
     },
     mounted() {
       this.goodsData = localStorage.getItem('goodsData') ? JSON.parse(localStorage.getItem('goodsData')) : []
+      this.calcCartData()
     },
     methods: {
       opt(state, id) {
@@ -79,16 +80,16 @@
               this.goodsData[i].num > 1 && this.goodsData[i].num--
             }
           }
-          this.$root.eventHub.$emit('cartCount', -1)
+          this.$root.eventHub.$emit('goodsCount', -1)
         } else {
           for (let i = 0; i < len; i++) {
             if (this.goodsData[i].id === id) {
               this.goodsData[i].num++
             }
           }
-          this.$root.eventHub.$emit('cartCount', 1)
+          this.$root.eventHub.$emit('goodsCount', 1)
         }
-        localStorage.setItem('cartData', JSON.stringify(this.goodsData));
+        localStorage.setItem('goodsData', JSON.stringify(this.goodsData));
         this.calcCartData()
       },
       check(id, status) {
@@ -134,8 +135,8 @@
               break;
             }
           }
-          localStorage.setItem('cartData', JSON.stringify(this.goodsData));
-          this.$root.eventHub.$emit('cartCount', -num)
+          localStorage.setItem('goodsData', JSON.stringify(this.goodsData));
+          this.$root.eventHub.$emit('goodsCount', -num)
           Toast({
             message: '删除成功',
             duration: 1000

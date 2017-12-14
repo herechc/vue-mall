@@ -1,5 +1,5 @@
 <template>
-  <div class="my-container">
+  <div class="my-container" v-loading="isload">
     <div class="block-swipe">
       <mt-swipe :auto="2000">
         <mt-swipe-item v-for="item in bannerlist" :key="item.id">
@@ -7,10 +7,7 @@
         </mt-swipe-item>
       </mt-swipe>
     </div>
-    <!-- <svg class="circular" viewBox="25 25 50 50">
-      <circle class="path" cx="50" cy="50" r="20" fill="none"/>
-    </svg> -->
-    <div class="block-product">
+    <div class="block-product" >
       <div class="wrapper product-new">
         <p>最近新品</p>
         <div class="product-list">
@@ -29,6 +26,7 @@
 <script>
   import { Swipe, SwipeItem, Loadmore, MessageBox } from 'mint-ui'
   import { baseUrlImg } from 'utils/config'
+  import { is2Bottom } from 'utils/scroll2Bottom'
   export default {
     name: 'home',
     components: {
@@ -39,22 +37,37 @@
     },
     data() {
       return {
-        listQuery: {},
+        listQuery: {
+          pageSize: 2
+        },
         tableList: [],
         baseUrlImg,
-        bannerlist: []
+        bannerlist: [],
+        isload: false
       }
     },
     mounted() {
       this.getlist()
       this.getBanner()
+      is2Bottom(this.handle2Bottom)
     },
     methods: {
+      handle2Bottom() {
+        this.isload = true
+        this.listQuery.pageSize += 1
+        this.getlist()
+      },
       getlist() {
-        this.$api.goodsList().then(res => {
+        this.$api.goodsList(this.listQuery).then(res => {
           // console.log(res)
+          const that = this
           if (res.data.code === 1) {
             this.tableList = res.data.list
+            this.$nextTick(_ => {
+              setTimeout(function() {
+                that.isload = false
+              }, 1000);
+            })
           } else {
             MessageBox.alert(res.message)
           }
@@ -82,6 +95,10 @@
 }
 .block-swipe{
   height:250px;
+  img{
+    height:250px;
+    width:100%;
+  }
 }
 .block-product{
   .product{

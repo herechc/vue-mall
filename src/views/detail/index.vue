@@ -7,17 +7,18 @@
       <img :src="baseUrlImg + goodsInfo.image_path">
     </div>
     <div class="detail">
-      <div class="title">{{goodsInfo.name}}</div>
-      <div class="product-stock">
-        <span>{{goodsInfo.sold}}</span>
+      <div class="title">
+        <span>{{goodsInfo.name}}</span>
+        <span>${{goodsInfo.price}}</span>
+      </div>
+      <div class="product-stock status">
+        <span>已售:{{goodsInfo.sold}}</span>
         <span>库存:{{goodsInfo.stock}}</span>
       </div>
-      <div class="product-stock">
-        商品价格:${{goodsInfo.price}}
-      </div>
+     
       <div class="desc">{{goodsInfo.descr}}</div>
     </div>
-    <img class="detail-desc" v-for="item in goodsInfo.picture" :src="baseUrlImg + item"></img>
+    <img class="detail-desc" v-for="item in goodsInfo.picture" :src="baseUrlImg + item" :key="item.id"></img>
     <div class="go-add-cart" id="go-add-cart">
       <span @click="addCart(goodsInfo.id)">加入购物车</span>
     </div>
@@ -100,6 +101,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.detail-container{
+  padding-bottom:40px
+}
 .container {
   padding-bottom: 80px;
   background: #eee;
@@ -111,19 +115,21 @@ export default {
   width: 100%;
   height: 100%;
 }
-
+.status{
+  border-bottom:1px solid #e5e5e5
+}
 .detail {
-  padding: 10px 10px 0;
+  padding: 10px 0px 0;
   background: #fff;
   margin-bottom: 10px;
 }
 
-.detail div {
-  padding-bottom: 10px;
-}
-
 .product-stock {
   display: flex;
+  line-height:30px;
+  padding:0 10px;
+  height:30px;
+  color:#898989;
   justify-content: space-between;
   font-size: 14px;
 }
@@ -133,7 +139,18 @@ export default {
   padding: 6px;
   margin-bottom: 100px;
 }
-
+.title{
+  padding:0 10px;
+  height:35px;
+  color:#333;
+  line-height:35px;
+  span{
+    &:last-child{
+      float: right;
+      color:#F44!important
+    }
+  }
+}
 .detail-desc img {
   width: 100%;
   vertical-align: bottom;
@@ -141,7 +158,8 @@ export default {
 }
 
 .desc {
-  color: #666;
+  color: #999;
+  padding:10px 10px;
 }
 
 .go-add-cart {

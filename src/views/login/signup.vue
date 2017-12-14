@@ -60,6 +60,7 @@
   @import '~styles/mixin';
   .login_page {
     background-color: #324057;
+    height:100vh
   }
   
   .manage_tip {

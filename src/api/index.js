@@ -30,8 +30,8 @@ export default {
    *      name(名称)
    *      password(密码)
   */
-  goodsList: _ => {
-    return fetch.get('/v1/user/goods')
+  goodsList: data => {
+    return fetch.get('/v1/user/goods', { params: data })
   },
   /**
    * 接口名称：获取商品

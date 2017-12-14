@@ -13,4 +13,7 @@ export default {
 <style lang="scss">
 @import '~normalize.css/normalize.css';
 @import '~styles/index.scss';
+#app{
+  // height:100vh
+}
 </style>
