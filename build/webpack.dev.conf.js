@@ -1,5 +1,6 @@
 'use strict'
 const utils = require('./utils')
+const path = require('path')
 const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
@@ -11,6 +12,10 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
+// add
+function relativeApp(relativePath) {
+  return path.resolve(relativePath)
+}
 
 module.exports = merge(baseWebpackConfig, {
   module: {
@@ -30,6 +35,7 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.html',
       inject: true,
+      favicon: relativeApp('favicon.ico'),
       chunks: ['vendor', 'app'],
       hash: true // 为静态资源生成hash值
     }),
