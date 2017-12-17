@@ -6,7 +6,7 @@ import { MessageBox } from 'mint-ui'
 Vue.component(MessageBox.name, MessageBox)
 
 const service = axios.create({
-  baseURL: '/api', // api的base_url
+  baseURL: process.env.BASE_API, // api的base_url->nginx->baseURL: '/api'
   timeout: 5000 // 请求超时
 })
 

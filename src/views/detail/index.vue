@@ -137,7 +137,11 @@ export default {
 .detail-desc {
   background: #fff;
   padding: 6px;
-  margin-bottom: 100px;
+  margin:0 auto 100px;
+  width:90%;
+  display:block;
+  height:100%;
+
 }
 .title{
   padding:0 10px;

@@ -26,7 +26,7 @@
 <script>
   import { Swipe, SwipeItem, Loadmore, MessageBox } from 'mint-ui'
   import { baseUrlImg } from 'utils/config'
-  import { is2Bottom } from 'utils/scroll2Bottom'
+  import { is2Bottom, removeEvent } from 'utils/scroll2Bottom'
   export default {
     name: 'home',
     components: {
@@ -38,7 +38,7 @@
     data() {
       return {
         listQuery: {
-          pageSize: 2
+          pageSize: 4
         },
         tableList: [],
         baseUrlImg,
@@ -66,6 +66,7 @@
             this.$nextTick(_ => {
               setTimeout(function() {
                 that.isload = false
+                removeEvent()
               }, 1000);
             })
           } else {
